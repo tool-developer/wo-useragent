@@ -79,6 +79,14 @@ UserAgent.custom({
   }
 })
 ```
+## 版本检测
+检测版本是否大于等于某个版本号(前者是否大于等于后者),最多只支持三级版本号
+```
+UserAgent.checkVersion('1.1.2','1.1.1');// true
+UserAgent.checkVersion('1.1.2',[1,1,1]);// true
+UserAgent.checkVersion([1,1,2],[1,1,1]);// true
+```
+
 ### 规则说明
 | 属性	| 说明 | 
 | :--  | :--  | 
