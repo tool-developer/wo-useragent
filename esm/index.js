@@ -521,6 +521,89 @@ function UserAgent(ua) {
 UserAgent.custom = function (rules) {
   //
   DefaultRules = _objectSpread(_objectSpread({}, DefaultRules), rules || {});
+}; //
+
+
+var checkV = function checkV(cv, v) {
+  cv = parseInt(cv, 10) || 0;
+  v = parseInt(v, 10) || 0; //
+
+  if (cv > v) {
+    //
+    return true;
+  }
+
+  if (cv < v) {
+    //
+    return false;
+  }
+
+  return -1;
+};
+/**
+ * 大于或等于某个版本
+ * @param {*} currentVersion 
+ * @param {*} checkVersion 
+ * @returns 
+ */
+
+
+UserAgent.checkVersion = function (currentVersion, checkVersion) {
+  // 外部调用传入为undefine
+  if (!(currentVersion && checkVersion)) {
+    //
+    return false;
+  } //
+
+
+  if (typeof currentVersion === 'string') {
+    //
+    currentVersion = currentVersion.split('.');
+  } //
+
+
+  if (typeof checkVersion === 'string') {
+    //
+    checkVersion = checkVersion.split('.');
+  } //
+
+
+  var _checkVersion = checkVersion,
+      _checkVersion2 = _slicedToArray(_checkVersion, 3),
+      v1 = _checkVersion2[0],
+      v2 = _checkVersion2[1],
+      v3 = _checkVersion2[2];
+
+  var _currentVersion = currentVersion,
+      _currentVersion2 = _slicedToArray(_currentVersion, 3),
+      cv1 = _currentVersion2[0],
+      cv2 = _currentVersion2[1],
+      cv3 = _currentVersion2[2]; //
+
+
+  var r1 = checkV(cv1, v1);
+
+  if (r1 !== -1) {
+    //
+    return r1;
+  }
+
+  var r2 = checkV(cv2, v2);
+
+  if (r2 !== -1) {
+    //
+    return r2;
+  }
+
+  var r3 = checkV(cv3, v3);
+
+  if (r3 !== -1) {
+    //
+    return r3;
+  } // =
+
+
+  return true;
 };
 
 export { UserAgent as default };

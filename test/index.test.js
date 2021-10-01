@@ -561,7 +561,7 @@ describe('UserAgent test:', () => {
 
   it('qq iphone test', done => {
     const ua = new UserAgent(qq['iphone']);
-    console.log(ua)
+    // console.log(ua)
     expect(ua.qq).toEqual(true)
     expect(ua.iphone).toEqual(true)
     expect(ua.mobile).toEqual(true)

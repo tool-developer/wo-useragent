@@ -383,4 +383,66 @@ UserAgent.custom = (rules)=>{
   }
 }
 
+//
+const checkV = (cv, v) => {
+  cv = parseInt(cv, 10) || 0;
+  v = parseInt(v, 10) || 0;
+  //
+  if (cv > v) {
+    //
+    return true;
+  }
+  if (cv < v) {
+    //
+    return false;
+  }
+
+  return -1;
+};
+
+/**
+ * 大于或等于某个版本
+ * @param {*} currentVersion 
+ * @param {*} checkVersion 
+ * @returns 
+ */
+UserAgent.checkVersion = (currentVersion, checkVersion)=>{
+  // 外部调用传入为undefine
+  if(!(currentVersion && checkVersion)){
+    //
+    return false;
+  }
+  //
+  if(typeof currentVersion === 'string'){
+    //
+    currentVersion = currentVersion.split('.');
+  }
+  //
+  if(typeof checkVersion === 'string'){
+    //
+    checkVersion = checkVersion.split('.');
+  }
+  //
+  const [v1, v2, v3] = checkVersion;
+  const [cv1, cv2, cv3] = currentVersion;
+  //
+  const r1 = checkV(cv1, v1);
+  if (r1 !== -1) {
+    //
+    return r1;
+  }
+  const r2 = checkV(cv2, v2);
+  if (r2 !== -1) {
+    //
+    return r2;
+  }
+  const r3 = checkV(cv3, v3);
+  if (r3 !== -1) {
+    //
+    return r3;
+  }
+  // =
+  return true;
+}
+
 export default UserAgent;
