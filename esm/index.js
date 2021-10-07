@@ -217,7 +217,7 @@ var DefaultRules = {
     device: true
   },
   //
-  ios: /(i(?:pad|phone|pod))(?:.*)cpu(?: i(?:pad|phone|pod))? os (\d+(?:[\.|_]\d+){1,})/,
+  ios: /(?:i(?:pad|phone|pod))(?:.*)cpu(?: i(?:pad|phone|pod))? os (\d+(?:[\.|_]\d+){1,})/,
   android: {
     regex: /(?:android)\s+([\d.]+)/,
     device: true,
